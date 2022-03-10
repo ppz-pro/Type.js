@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ppz-pro/type-js/issues"
   },
-  "homepage": "https://github.com/ppz-pro/type-js#readme"
+  "homepage": "https://github.com/ppz-pro/type-js#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }

@@ -1,6 +1,8 @@
 const Checker = require('./checker').Checker
 
 module.exports = class ArrayChecker extends Checker {
+  #check
+  
   constructor(valicateEl) {
     super()
 

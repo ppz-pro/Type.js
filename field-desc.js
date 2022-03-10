@@ -1,9 +1,13 @@
 const Error = require('./error')
 const UnwritableError = Error.UnwritableError
-const Checker = require('./checker')
+const { Checker } = require('./checker')
 
 module.exports =
 class FieldDesc extends Checker {
+  #name
+  #validate
+  #notNull
+  
   constructor({ name, validate, notNull }) {
     super()
     this.#setName(name)
@@ -37,7 +41,7 @@ class FieldDesc extends Checker {
       this.typeError('validate', value)
     
     this.#validate = target => {
-      if(this.isNil(target) && this.allowNull)
+      if(this.isNil(target) && !this.notNull)
         return true
       else
         return validate(target)
@@ -51,9 +55,9 @@ class FieldDesc extends Checker {
     throw UnwritableError()
   }
   #setNotNull(value) {
-    if(isNil(value))
+    if(this.isNil(value))
       this.#notNull = false
     else
-      this.#notNull = this.checkBoolean('notNull', value)
+      this.#notNull = this.checkBoolean(value)
   }
 }

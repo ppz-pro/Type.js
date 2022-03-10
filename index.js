@@ -9,6 +9,8 @@ const fieldDescListChecker = new ArrayChecker(function(target) {
 })
 
 class TypeJS {
+  #list
+  
   /**
    * 给 js 对象添加类型
    * @param {FieldDesc[]} fieldDescList
@@ -20,7 +22,7 @@ class TypeJS {
     if(!object)
       return false
     for(let desc of this.#list)
-      if(!desc.validate(object))
+      if(!desc.validate(object[desc.name]))
         return desc
     return false
   }
