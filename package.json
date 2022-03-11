@@ -4,7 +4,7 @@
   "description": "两种异常：\r 1. 构建类型时发生异常 throw Error\r 2. 类型检查时发生异常 创建 Error 子类，throw 子类",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

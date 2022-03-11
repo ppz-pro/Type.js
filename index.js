@@ -1,22 +1,17 @@
-const { Checker, CheckerError } = require('./checker')
-const ArrayChecker = require('./array-checker')
 const FieldDesc = require('./field-desc')
-const { TypeJSError, UnwritableError } = require('./error')
-
-
-const fieldDescListChecker = new ArrayChecker(function(target) {
-  return target instanceof FieldDesc
-})
+const checker = require('./checker')
+const buildArrayChecker = require('./build-array-checker')
 
 class TypeJS {
-  #list
-  
   /**
    * 给 js 对象添加类型
-   * @param {FieldDesc[]} fieldDescList
+   * @param {FieldDesc[]} optionsList
    */
-  constructor(fieldDescList) {
-    this.#list = fieldDescListChecker.check(fieldDescList)
+  constructor(optionsList) {
+    if(!(optionsList instanceof Array))
+      throw Error('error on constructing TypeJS')
+    
+    this.list = optionsList.map(FieldDesc)
   }
   check(object) {
     if(!object)
@@ -30,10 +25,7 @@ class TypeJS {
 
 module.exports = {
   TypeJS,
-  Checker,
-  ArrayChecker,
   FieldDesc,
-  TypeJSError,
-  UnwritableError,
-  CheckerError
+  checker,
+  buildArrayChecker
 }

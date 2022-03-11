@@ -1,42 +1,9 @@
-const TypeJSError = require('./error').TypeJSError
+exports.string = value => typeof value == 'string'
+exports.number = value => typeof value == 'number'
+exports.boolean = value => typeof value == 'boolean'
+exports.symbol = value => typeof value == 'symbol'
+exports.bigint = value => typeof value == 'bigint'
 
-class CheckerError extends TypeJSError {
-  constructor(name, value) {
-    super(`error on type checking, typeName: ${name}, value: ${value}`)
-  }
-}
-
-class Checker {
-  checkString(value) {
-    if(typeof value == 'string')
-      return value
-    this.typeError('string', value)
-  }
-  checkBoolean(value) {
-    if(typeof value == 'boolean')
-      return value
-    this.typeError('boolean', value)
-  }
-  checkNumber(value) {
-    if(typeof value == 'number')
-      return value
-    this.typeError('number', value)
-  }
-  checkInt(value) {
-    value = this.checkNumber(value)
-    if(value % 1 == 0)
-      return value
-    this.typeError('int', value)
-  }
-  
-  isNil(value) {
-    return value == undefined || value == null || false
-  }
-  typeError(typename, value) {
-    throw new CheckerError(typename, value)
-  }
-}
-
-module.exports = {
-  Checker, CheckerError
-}
+exports.int = value => exports.number(value) && value % 1 == 0
+exports.nil = value => value == undefined || value == null || false
+exports.function = value => value instanceof Function
