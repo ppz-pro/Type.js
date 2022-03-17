@@ -1,14 +1,3 @@
-# Type.js
-在运行时检查数据的类型
-
-# 使用
-##### 安装
-``` bash
-npm install @ppzp/type
-```
-
-##### demo
-``` js
 const {
   Type,
 
@@ -55,8 +44,3 @@ const result4 = type.validate({
 console.log(result4.is(FieldWrongDetail)) // true
 console.log(result4.name) // "gender"
 console.log(result4.type == UnvalidatedField) // true
-```
-
-### LICENSE
-The author disclaims copyright to this source code.  
-[The Unlicense](https://unlicense.org/)

@@ -1,7 +1,7 @@
 {
-  "name": "@ppzp/type-js",
-  "version": "0.0.0",
-  "description": "两种异常：\r 1. 构建类型时发生异常 throw Error\r 2. 类型检查时发生异常 创建 Error 子类，throw 子类",
+  "name": "@ppzp/type",
+  "version": "0.0.1",
+  "description": "在运行时检查数据的类型",
   "main": "index.js",
   "scripts": {
     "test": "jest"
