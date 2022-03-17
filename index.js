@@ -1,31 +1,35 @@
 const FieldDesc = require('./field-desc')
-const checker = require('./checker')
-const buildArrayChecker = require('./build-array-checker')
+const {
+  NilField,
+  UnvalidatedField,
+  WrongDetail,
+  NilWrongDetail,
+  FieldWrongDetail
+} = require('./wrong')
 
-class TypeJS {
-  /**
-   * 给 js 对象添加类型
-   * @param {FieldDesc[]} optionsList
-   */
-  constructor(optionsList) {
-    if(!(optionsList instanceof Array))
-      throw Error('error on constructing TypeJS')
-    
-    this.list = optionsList.map(FieldDesc)
+class Type {
+  constructor(fields) {
+    if(!(fields instanceof Array))
+      throw Error('fields should be an Array')
+    this.fields = fields.map(field => new FieldDesc(field))
   }
-  check(object) {
+  validate(object) {
     if(!object)
-      return false
-    for(let desc of this.#list)
-      if(!desc.validate(object[desc.name]))
-        return desc
-    return false
+      return new NilWrongDetail()
+    for(let desc of this.fields) {
+      const wrongField = desc.validate(object)
+      if(wrongField)
+        return new FieldWrongDetail(desc.name, wrongField)
+    }
   }
 }
 
 module.exports = {
-  TypeJS,
-  FieldDesc,
-  checker,
-  buildArrayChecker
+  Type,
+  
+  NilField,
+  UnvalidatedField,
+  WrongDetail,
+  NilWrongDetail,
+  FieldWrongDetail
 }
