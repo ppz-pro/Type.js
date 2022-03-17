@@ -4,7 +4,22 @@ const FieldDesc = require('./field-desc')
 test('contructor error: no options', () => {
   expect(() =>
     new FieldDesc()
-  ).toThrow('error on constructing FieldDesc')
+  ).toThrow('error on constructing FieldDesc: options cant be undefined')
+})
+test('contructor error: FieldDesc in, error out', () => {
+  expect(() =>
+    new FieldDesc(
+      new FieldDesc({
+        name: 'tel',
+        validate: 'string'
+      })
+    )
+  ).toThrow('cant constructing a FieldDesc from a FieldDesc')
+})
+test('contructor error: no new', () => {
+  expect(() =>
+    FieldDesc()
+  ).toThrow('Class constructor FieldDesc cannot be invoked without \'new\'')
 })
 test('contructor error: no name', () => {
   expect(() =>
@@ -52,5 +67,8 @@ test('contructor error: validate wrong type', () => {
   ).toThrow('validate is a string or function but it\'s setting to 1')
 })
 
-// FieldDesc in, FieldDesc out
-// test('FieldDesc in, FieldDesc out')
+// checking
+
+// const desc = new FieldDesc({
+  
+// })
