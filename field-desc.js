@@ -1,4 +1,5 @@
 const checker = require('./checker')
+const { NilField, UnvalidatedField } = require('./wrong')
 
 module.exports = class FieldDesc {
   constructor(options) {
@@ -20,15 +21,24 @@ module.exports = class FieldDesc {
     
     if(checker.string(options.validate) && checker[options.validate])
       this.__validate = checker[options.validate]
-    else if(typeof validate == 'function') // 普通函数、箭头函数，不包括 async 函数
+    else if(typeof options.validate == 'function') // 普通函数、箭头函数，不包括 async 函数
       this.__validate = options.validate
     else
       throw Error('validate is a string or function but it\'s setting to ' + options.validate)
   }
-  validate(value) {
-    if(!this.notNull && checker.nil(value))
-      return true
-    else
-      return this.__validate(target)
+  validate(target) {
+    // target nil-validated in Type
+    const value = target[this.name]
+    if(checker.nil(value)) {
+      if(this.notNull)
+        return NilField
+      else
+        return
+    } else {
+      if(this.__validate(value))
+        return
+      else
+        return UnvalidatedField
+    }
   }
 }

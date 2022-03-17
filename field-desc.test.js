@@ -1,4 +1,5 @@
 const FieldDesc = require('./field-desc')
+const { NilField, UnvalidatedField } = require('./wrong')
 
 // constructor.string
 test('contructor error: no options', () => {
@@ -69,6 +70,79 @@ test('contructor error: validate wrong type', () => {
 
 // checking
 
-// const desc = new FieldDesc({
-  
-// })
+const desc1 = new FieldDesc({
+  name: 'tel',
+  validate: 'string'
+})
+
+test('constructing with string validate 1', () => {
+  expect(
+    desc1.validate({
+      tel: '1234'
+    })
+  ).toBe()
+})
+
+test('constructing with string validate 2', () => {
+  expect(
+    desc1.validate({})
+  ).toBe()
+})
+
+test('constructing with string validate 3', () => {
+  expect(
+    desc1.validate({
+      tel: 1234
+    })
+  ).toBe(UnvalidatedField)
+})
+
+const desc2 = new FieldDesc({
+  name: 'tel',
+  validate: 'string',
+  notNull: true
+})
+
+test('constructing with string validate 4', () => {
+  expect(
+    desc2.validate({})
+  ).toBe(NilField)
+})
+
+test('constructing with string validate 5', () => {
+  expect(
+    desc2.validate({
+      tel: '1234'
+    })
+  ).toBe()
+})
+
+const desc3 = new FieldDesc({
+  name: 'year',
+  notNull: true,
+  validate(value) {
+    return value > 0 && value < 150
+  }
+})
+
+test('constructing with string validate 6', () => {
+  expect(
+    desc3.validate({})
+  ).toBe(NilField)
+})
+
+test('constructing with string validate 7', () => {
+  expect(
+    desc3.validate({
+      year: 1
+    })
+  ).toBe()
+})
+
+test('constructing with string validate 8', () => {
+  expect(
+    desc3.validate({
+      year: 0
+    })
+  ).toBe(UnvalidatedField)
+})
