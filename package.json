@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ppz-pro/type-js.git"
+    "url": "git+https://github.com/ppz-pro/Type.js.git"
   },
   "keywords": [
     "type"
   ],
   "author": "gy",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/ppz-pro/type-js/issues"
+    "url": "https://github.com/ppz-pro/Type.js/issues"
   },
-  "homepage": "https://github.com/ppz-pro/type-js#readme",
+  "homepage": "https://github.com/ppz-pro/Type.js#readme",
   "devDependencies": {
     "jest": "^27.5.1"
   }

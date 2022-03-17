@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@ppzp/type": "file:../../ppzp-type-0.0.1.tgz"
+    "@ppzp/type": "^0.0.1"
   }
 }
