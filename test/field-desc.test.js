@@ -1,5 +1,4 @@
-const FieldDesc = require('./field-desc')
-const { NilField, UnvalidatedField } = require('./wrong')
+const { FieldDesc, NilField, UnvalidatedField } = require('../index')
 
 // constructor.string
 test('contructor error: no options', () => {

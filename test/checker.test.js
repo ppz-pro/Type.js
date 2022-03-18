@@ -1,4 +1,4 @@
-const checker = require('./checker')
+const checker = require('../index').checker
 
 // string
 test('"string" is a string', () => {

@@ -6,7 +6,7 @@ const {
   WrongDetail,
   NilWrongDetail,
   FieldWrongDetail
-} = require('./index')
+} = require('../index')
 
 test('error when constructing Type', () => {
   expect(() =>
