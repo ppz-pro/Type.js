@@ -9,8 +9,8 @@ const checker = {
   function: value => value instanceof Function
 }
 
-const NilField = Symbol('nil field')
-const UnvalidatedField = Symbol('unvalidated field')
+const NilField = Symbol('nil')
+const UnvalidatedField = Symbol('unvalidated')
 
 class WrongDetail {
   is(Class) {

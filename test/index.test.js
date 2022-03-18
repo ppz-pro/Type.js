@@ -120,3 +120,25 @@ test('validate: multi-field', () => {
     result3.type
   ).toBe(UnvalidatedField)
 })
+
+test('wrong detail to string', () => {
+  const type = new Type([{
+    name: 'version',
+    validate: 'string',
+    notNull: true
+  }])
+
+  expect(
+    type.validate().toString()
+  ).toBe('target is nil')
+
+  expect(
+    type.validate({}).toString()
+  ).toBe(`error on field version, type: Symbol(nil)`)
+
+  expect(
+    type.validate({
+      version: 123
+    }).toString()
+  ).toBe(`error on field version, type: Symbol(unvalidated)`)
+})
