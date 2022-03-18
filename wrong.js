@@ -7,12 +7,19 @@ class WrongDetail {
   }
 }
 
-class NilWrongDetail extends WrongDetail {}
+class NilWrongDetail extends WrongDetail {
+  toString() {
+    return 'target is nil'
+  }
+}
 class FieldWrongDetail extends WrongDetail {
   constructor(name, type) {
     super()
     this.name = name
     this.type = type
+  }
+  toString() {
+    return `error on field ${this.name}, type: ${this.type.toString()}`
   }
 }
 
