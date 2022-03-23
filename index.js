@@ -1,5 +1,6 @@
 const checker = {
   string: value => typeof value == 'string',
+  trueString: value => checker.string(value) && value !== '',
   number: value => typeof value == 'number',
   boolean: value => typeof value == 'boolean',
   symbol: value => typeof value == 'symbol',

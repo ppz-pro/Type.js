@@ -1,6 +1,6 @@
 {
   "name": "@ppzp/type",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "在运行时检查数据的类型",
   "main": "index.js",
   "scripts": {
