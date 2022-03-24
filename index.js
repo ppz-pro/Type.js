@@ -1,6 +1,5 @@
 const checker = {
   string: value => typeof value == 'string',
-  trueString: value => checker.string(value) && value !== '',
   number: value => typeof value == 'number',
   boolean: value => typeof value == 'boolean',
   symbol: value => typeof value == 'symbol',
@@ -68,7 +67,9 @@ class FieldDesc {
       else
         return
     } else {
-      if(this.__validate(value))
+      if(this.notNull && this.__validate == checker.string && value === '')
+        return NilField
+      else if(this.__validate(value))
         return
       else
         return UnvalidatedField

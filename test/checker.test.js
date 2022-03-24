@@ -16,22 +16,6 @@ test('1 is not a string', () => {
     checker.string(1)
   ).toBe(false)
 })
-// trueString
-test('true string', () => {
-  expect(
-    checker.trueString(1)
-  ).toBe(false)
-  expect(
-    checker.trueString()
-  ).toBe(false)
-  expect(
-    checker.trueString('')
-  ).toBe(false)
-  expect(
-    checker.trueString('string')
-  ).toBe(true)
-})
-
 // number
 test('1 is a number', () => {
   expect(
