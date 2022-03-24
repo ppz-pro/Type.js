@@ -56,7 +56,8 @@ test('contructor error: no validate', () => {
     new FieldDesc({
       name: 'tel'
     })
-  ).toThrow('validate is a string or function but it\'s setting to undefined')
+  ).toThrow('validate is a string(one of [string, number, boolean, symbol, bigint, '
+    + 'int, nil, function]) or function but it\'s setting to undefined')
 })
 test('contructor error: validate wrong type', () => {
   expect(() =>
@@ -64,7 +65,8 @@ test('contructor error: validate wrong type', () => {
       name: 'tel',
       validate: 1
     })
-  ).toThrow('validate is a string or function but it\'s setting to 1')
+  ).toThrow('validate is a string(one of [string, number, boolean, symbol, bigint, '
+    + 'int, nil, function]) or function but it\'s setting to 1')
 })
 
 // checking

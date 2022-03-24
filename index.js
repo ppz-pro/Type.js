@@ -56,7 +56,8 @@ class FieldDesc {
     else if(typeof options.validate == 'function') // 普通函数、箭头函数，不包括 async 函数
       this.__validate = options.validate
     else
-      throw Error('validate is a string or function but it\'s setting to ' + options.validate)
+      throw Error('validate is a string(one of [string, number, boolean, symbol, bigint, '
+        + 'int, nil, function]) or function but it\'s setting to ' + options.validate)
   }
   validate(target) {
     // target nil-validated in Type
