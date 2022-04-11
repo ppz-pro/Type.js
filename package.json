@@ -3,6 +3,9 @@
   "version": "0.0.4",
   "description": "在运行时检查数据的类型",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "jest"
   },

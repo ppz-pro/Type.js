@@ -56,7 +56,7 @@ test('contructor error: no validate', () => {
     new FieldDesc({
       name: 'tel'
     })
-  ).toThrow('validate is a string(one of [string, number, boolean, symbol, bigint, '
+  ).toThrow('validate is a string(one of [string, truestring, number, boolean, symbol, bigint, '
     + 'int, nil, function]) or function but it\'s setting to undefined')
 })
 test('contructor error: validate wrong type', () => {
@@ -65,7 +65,7 @@ test('contructor error: validate wrong type', () => {
       name: 'tel',
       validate: 1
     })
-  ).toThrow('validate is a string(one of [string, number, boolean, symbol, bigint, '
+  ).toThrow('validate is a string(one of [string, truestring, number, boolean, symbol, bigint, '
     + 'int, nil, function]) or function but it\'s setting to 1')
 })
 
@@ -89,7 +89,7 @@ test('string validate', () => {
       tel: 1234
     })
   ).toBe(UnvalidatedField)
-    
+  
   const desc2 = new FieldDesc({
     name: 'tel',
     validate: 'string',
@@ -102,9 +102,29 @@ test('string validate', () => {
     desc2.validate({
       tel: ''
     })
-  ).toBe(NilField)
+  ).toBe()
   expect(
     desc2.validate({
+      tel: '1234'
+    })
+  ).toBe()
+
+  
+  const desc3 = new FieldDesc({
+    name: 'tel',
+    validate: 'truestring',
+    notNull: true
+  })
+  expect(
+    desc3.validate({})
+  ).toBe(NilField)
+  expect(
+    desc3.validate({
+      tel: ''
+    })
+  ).toBe(NilField)
+  expect(
+    desc3.validate({
       tel: '1234'
     })
   ).toBe()

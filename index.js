@@ -1,5 +1,6 @@
 const checker = {
   string: value => typeof value == 'string',
+  truestring: value => typeof value == 'string',
   number: value => typeof value == 'number',
   boolean: value => typeof value == 'boolean',
   symbol: value => typeof value == 'symbol',
@@ -56,7 +57,7 @@ class FieldDesc {
     else if(typeof options.validate == 'function') // 普通函数、箭头函数，不包括 async 函数
       this.__validate = options.validate
     else
-      throw Error('validate is a string(one of [string, number, boolean, symbol, bigint, '
+      throw Error('validate is a string(one of [string, truestring, number, boolean, symbol, bigint, '
         + 'int, nil, function]) or function but it\'s setting to ' + options.validate)
   }
   validate(target) {
@@ -68,7 +69,7 @@ class FieldDesc {
       else
         return
     } else {
-      if(this.notNull && this.__validate == checker.string && value === '')
+      if(this.notNull && this.__validate == checker.truestring && value === '')
         return NilField
       else if(this.__validate(value))
         return
