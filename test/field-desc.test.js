@@ -128,6 +128,29 @@ test('string validate', () => {
       tel: '1234'
     })
   ).toBe()
+
+  const desc4 = new FieldDesc({
+    name: 'tel',
+    validate: 'truestring'
+  })
+  expect(
+    desc4.validate({})
+  ).toBe()
+  expect(
+    desc4.validate({
+      tel: ''
+    })
+  ).toBe()
+  expect(
+    desc4.validate({
+      tel: '1234'
+    })
+  ).toBe()
+  expect(
+    desc4.validate({
+      tel: 1234
+    })
+  ).toBe(UnvalidatedField)
 })
 
 test('function validate', () => {
