@@ -6,7 +6,7 @@ const checker = {
   symbol: value => typeof value == 'symbol',
   bigint: value => typeof value == 'bigint',
   int: value => checker.number(value) && value % 1 == 0,
-  nil: value => value == undefined || value == null || false,
+  nil: value => value === undefined || value === null,
   function: value => value instanceof Function
 }
 
