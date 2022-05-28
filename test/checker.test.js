@@ -32,6 +32,11 @@ test('new Number(1) isnt a number', () => {
     checker.number(new Number(1))
   ).toBe(false)
 })
+test('NaN isnt a number', () => {
+  expect(
+    checker.number(NaN)
+  ).toBe(false)
+})
 // boolean
 test('true is a boolean', () => {
   expect(

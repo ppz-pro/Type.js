@@ -1,7 +1,7 @@
 const checker = {
   string: value => typeof value == 'string',
   truestring: value => typeof value == 'string',
-  number: value => typeof value == 'number',
+  number: value => typeof value == 'number' && !isNaN(value),
   boolean: value => typeof value == 'boolean',
   symbol: value => typeof value == 'symbol',
   bigint: value => typeof value == 'bigint',
